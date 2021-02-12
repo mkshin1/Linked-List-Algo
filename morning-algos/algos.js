@@ -108,16 +108,82 @@ class SLL {
         runner = runner.next
 
     }
-    deleteV2(data) {
-        var runner = this.head
-        var prev = null
+    deleteV2(val) {
+        var current = this.head;
+        var prev = null;
 
-        // if head is val 
+        if (current != null && current.data == val) {
+            this.head = current.next;
+            return;
+        }
+
+        while (current && current.data !== val) {
+            prev = current;
+            current = current.next;
+        }
+
+        if (runner.next === null) {
+            console.log(prev)
+            return;
+        }
 
     }
 
     clear() {
         this.head = null
+    }
+    printSecondToLast() {
+        var runner = this.head;
+        var prev = null;
+
+        while (runner && runner.next) { // while both current and NEXT are valid
+            // console.log('what is runner?', runner, '\n');
+
+            prev = runner; // this runner before iteration is
+            runner = runner.next // move runner forward an avoid infinite loop 😁😁
+        }
+        // console.log('this is the second to last ->', prev.data);
+        return prev.data;
+    }
+
+    printNthToLast(n) {
+        if (this.head == null) return;
+        var runnerFast = this.head
+        var runnerSlow = this.head
+        var count = 0
+        while (runnerFast) {
+            if (count >= n) {
+
+
+            }
+            runnerFast = runnerFast.next
+            count++
+        }
+        if (count > n) {
+            console.log(runnerSlow.data)
+        }
+
+    }
+    // reverse the linked list in place without swapping values between nodes 
+    // reverse linked list in place
+    // you may not swap values between nodes
+    // input:  head -> (1) -> (2) -> (3) ->
+    // output: head -> (3) -> (2) -> (1) ->
+    reverse() {
+        var prev = null;
+        var current = this.head;
+        var next = null;
+
+        while (current) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+
+            // current = current.next // mover runner1 
+
+        }
+        this.head = prev;// point to last node at the END 
     }
 }
 
@@ -139,6 +205,10 @@ console.log(mySLL.contains(50))
 console.log(mySLL.size())
 // console.log(mySLL.clear())
 console.log(mySLL.delete(100))
+
+console.log("printSecondToLast ->", mySLL.printSecondToLast());
+
+mySLL.reverse();
 // var node = new Node(10)
 // node.data = 10
 // node.next = new Node()
