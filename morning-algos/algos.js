@@ -1,5 +1,6 @@
 // morning algos
 // singly linked list
+// continue to add more methods. 
 
 class Node {
     constructor(data) {
